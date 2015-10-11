@@ -1,4 +1,4 @@
-class ntp ($package) inherits ntp::params {
+class ntp ($package = $ntp::params::package_name) inherits ntp::params {
 
 	package { 'ntp':
 		name   => $package,
@@ -7,7 +7,7 @@ class ntp ($package) inherits ntp::params {
 	}
 
 
-	include ntp::file
+	class { 'ntp::file' : template => 'hello', }
 	include ntp::service
 
 }

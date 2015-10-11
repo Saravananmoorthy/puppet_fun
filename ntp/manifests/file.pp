@@ -1,13 +1,11 @@
-class ntp::file {
+class ntp::file ($template = $ntp::params::template, $servers = $ntp::params::default_servers) inherits ntp {
 
-	$template = $ntp::params::template
-	$servers = $ntp::params::default_servers
-
+	notify{"The template variable is now ${template}": }
 
 	file { '/etc/ntp.conf':
 		ensure => file,
 		require => Package['ntp'],
-		content => template("ntp/${template}.erb"),
+#		content => template("ntp/${template}.erb"),
 
 	}
 
